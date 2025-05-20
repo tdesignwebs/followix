@@ -7,6 +7,11 @@
     <title>Followix</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/d203ef3333.js" crossorigin="anonymous"></script>
+   <audio id="backgroundMusic" autoplay loop>
+    <source src="./ScreenRecording_05-04-2025 01-58-53_1.mp3" type="audio/ogg">
+    <source src="./ScreenRecording_05-04-2025 01-58-53_1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
     <style>
         body {
@@ -149,16 +154,13 @@
         .book-button {
             width: 50px;
             height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.08);
             border-radius: 16px;
-            display: flex;
             align-items: center;
             flex-direction: column;
             justify-content: center;
         }
-        .lines-box{
+
+        .lines-box {
             width: 40px;
             height: 25px;
             display: flex;
@@ -411,7 +413,19 @@
             transform: scale(1.05);
             opacity: 0.9;
         }
+ @media (min-width: 1024px) {
+            .card-product {
+                flex: 1 1 calc(50% - 20px);
+                /* 2 cards per row on medium screens */
+            }
 
+            .book-button{
+                display: none;
+            }
+            .footer-box {
+                margin-top: 100px;
+            }
+        }
         /* Responsive adjustments */
         @media (max-width: 1024px) {
             .card-product {
@@ -419,6 +433,9 @@
                 /* 2 cards per row on medium screens */
             }
 
+            .book-button{
+                display: none;
+            }
             .footer-box {
                 margin-top: 100px;
             }
@@ -430,7 +447,9 @@
 
                 /* 1 card per row on small screens */
             }
-
+.book-button{
+                display: flex;
+            }
             .nav-items {
                 display: none;
             }
@@ -526,6 +545,7 @@
                     </div>
 
                 </div>
+        
                 <div class="book-box">
                     <div class="book-button">
                         <div class="lines-box">
@@ -648,5 +668,14 @@
         </div>
     </div>
 </body>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var audio = document.getElementById('backgroundMusic');
+    
+    // Some browsers require audio to be played after a user interaction
+    document.body.addEventListener('click', function() {
+        audio.play().catch(e => console.log("Audio play failed:", e));
+    }, { once: true }); // The { once: true } ensures the listener only runs once
+});
+</script>
 </html>
